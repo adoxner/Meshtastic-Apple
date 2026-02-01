@@ -35,10 +35,6 @@ struct Connect: View {
 					Section {
 						if let connectedDevice = accessoryManager.activeConnection?.device,
 						   accessoryManager.isConnected || accessoryManager.isConnecting {
-							TipView(ConnectionTip(), arrowEdge: .bottom)
-								.tipViewStyle(PersistentTip())
-								.tipBackground(colorScheme == .dark ? Color(.systemBackground) : Color(.secondarySystemBackground))
-								.listRowSeparator(.hidden)
 							VStack(alignment: .leading) {
 								HStack {
 									VStack(alignment: .center) {
@@ -130,6 +126,7 @@ struct Connect: View {
 									}
 								}
 							}
+							.popoverTip(ConnectionTip())
 							.font(.caption)
 							.foregroundColor(Color.gray)
 							.padding([.top])
@@ -257,6 +254,7 @@ struct Connect: View {
 									Text("No device connected").font(.title3)
 								}
 								.padding()
+								.popoverTip(ConnectionTip())
 							}
 						}
 					}
